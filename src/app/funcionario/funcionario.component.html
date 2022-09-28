@@ -1,0 +1,116 @@
+<!-- Nome -->
+<div>
+    Nome: {{nome}}
+</div>
+
+<!-- Sexo -->
+<div *ngIf="isMasculino;else feminino">
+    Sexo: Masculino
+</div>
+
+<ng-template #feminino>
+    <div>
+        Sexo: Feminino
+    </div>
+</ng-template>
+
+<div *ngIf="isMasculino || idade == 26">
+    Você é experiente.
+</div>
+
+<!-- Idade -->
+<div>
+    Idade: {{idade}}
+</div>
+
+<!-- Login primeira opção
+<ng-template [ngIf]="isLogado" [ngIfElse]="userLoggedout">
+    <div>
+        Bem-Vindo, você está logado.
+    </div>
+</ng-template>
+
+<ng-template #userLoggedout>
+    <div>
+        Por favor, faça o seu login!
+    </div>
+</ng-template> -->
+
+<!-- Login segunda opção -->
+<div [hidden]="isLogado">
+    Bem-Vindo, você está logado.
+</div>
+
+<div [hidden]="!isLogado">
+    Por favor, faça seu login!!!
+</div>
+
+<!-- Funcionario -->
+<div [ngSwitch]="tipoFuncionario">
+    <div *ngSwitchCase="'Administrador'">
+        Você é um Administrador
+    </div>
+    <div *ngSwitchCase="'Gerente'">
+        Você é um gerente.
+    </div>
+    <div *ngSwitchCase="'Vendedor'">
+        Você é um vendedor.
+    </div>
+    <div *ngSwitchDefault>
+        Você é um usuário.
+    </div>
+</div>
+
+<!-- Sobrenome -->
+<div>
+    Digite seu sobrenome:
+    <input type="text" [(ngModel)]="sobreNome" />
+</div>
+
+<div>
+    Seu sobrenome é: {{sobreNome}}
+</div>
+
+<!-- Estado -->
+<ul>
+    <li *ngFor="let estado of estados">
+        {{estado}}
+    </li>
+</ul>
+
+<!-- Estado Checkbox -->
+<select>
+    <option *ngFor="let estado of estados">
+        {{estado}}
+    </option>
+</select>
+
+<!-- Pessoa -->
+<ul>
+    <li *ngFor="let tipo of tiposPessoa">
+        {{tipo.id}}
+        {{tipo.descricao}}
+    </li>
+</ul>
+
+<!--Pessoa Checkbox -->
+<select>
+    <option *ngFor="let tipo of tiposPessoa">
+        {{tipo.id}}
+        {{tipo.descricao}}
+    </option>
+</select>
+
+<!-- ComboBox Estado e Tipo de Pessoa -->
+<select [(ngModel)]="comboBox">
+    <option *ngFor="let estado of estados" [value]="estado">
+        {{estado}}
+    </option>
+</select>
+
+<!-- ComboBox Estado e Tipo de Pessoa -->
+<div [ngSwitch]="comboBox">
+    <div *ngSwitchCase="'Rio de Janeiro'">Carioca</div>
+    <div *ngSwitchCase="'São Paulo'">Paulista</div>
+    <div *ngSwitchCase="'Minas Gerais'">Mineiro</div>
+</div>
